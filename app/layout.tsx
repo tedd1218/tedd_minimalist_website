@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Victor_Mono, IBM_Plex_Mono } from "next/font/google"
+import { Victor_Mono } from "next/font/google"
 import "./globals.css";
-import Navbar from "../components/Navbar";
-import { cookies } from "next/headers"
-
+import NavigationWrapper from "../components/NavigationWrapper";
+import { cookies } from "next/headers";
 import { ThemeProvider } from "next-themes";
-import { ActiveThemeProvider } from "@/components/active-theme";
 import { cn } from "@/lib/utils";
+import LightDarkToggle from "../components/LightDarkToggle";
 
 const victorMono = Victor_Mono({
   subsets: ["latin"]
@@ -22,24 +21,20 @@ export const metadata: Metadata = {
   description: "Tedd's Portfolio Website",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies()
-  const activeThemeValue = cookieStore.get("active_theme")?.value
   return (
     <html lang="en" className={victorMono.className} suppressHydrationWarning>
-      <body
-        className={cn("antialiased", 
-                      activeThemeValue ? `theme-${activeThemeValue}` : "")}
-      >
-        {/* <Navbar /> */}
+      <body className={cn("antialiased")}> 
         <ThemeProvider attribute="class" disableTransitionOnChange>
-          <ActiveThemeProvider initialTheme={activeThemeValue}>
-            {children}
-          </ActiveThemeProvider>
+          <div className="fixed top-4 right-6 z-50">
+            <LightDarkToggle />
+          </div>
+          <NavigationWrapper />
+          {children}
         </ThemeProvider>
       </body>
     </html>
