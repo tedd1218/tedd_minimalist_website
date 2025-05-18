@@ -7,6 +7,7 @@ import Image from "next/image";
 export default function LightDarkToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [userToggled, setUserToggled] = useState(false);
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
@@ -17,7 +18,10 @@ export default function LightDarkToggle() {
   return (
     <button
       aria-label="Toggle theme"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={() => {
+        setTheme(isDark ? "light" : "dark");
+        setUserToggled(true);
+      }}
       className="relative w-23 h-11 bg-[#FFEF9A] rounded-full flex items-center px-2 dark:bg-[#9FA9DE] transition-colors duration-300"
     >
       {/* Moon icon */}
@@ -33,11 +37,11 @@ export default function LightDarkToggle() {
         layout
         initial={false}
         animate={{ x: knobX }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 30,
-        }}
+        transition={
+          userToggled
+            ? { type: "spring", stiffness: 500, damping: 30 }
+            : { duration: 0 }
+        }
         className="absolute w-8 h-8 rounded-full bg-[#FFF5C0] border-4 border-[#FFB53E] dark:bg-[#BCC5F0] dark:border-[#303867]"
       />
     </button>
