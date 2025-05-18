@@ -5,9 +5,10 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import { Victor_Mono, IBM_Plex_Mono } from 'next/font/google';
 import Image from 'next/image';
-type Props = {
+
+interface PageProps {
   params: { slug: string }
-};
+}
 
 const victorMono = Victor_Mono({
   subsets: ["latin"]
@@ -18,7 +19,7 @@ const ibmMono = IBM_Plex_Mono({
   subsets: ["latin"]
 });
 
-export default async function BlogPost({ params }: Props) {
+export default async function BlogPost({ params }: PageProps) {
   const { slug } = params;
   const filePath = path.join(process.cwd(), 'content/blog', `${slug}.md`);
   const fileContents = fs.readFileSync(filePath, 'utf8');
