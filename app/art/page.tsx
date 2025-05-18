@@ -25,7 +25,7 @@ const ibmMono = IBM_Plex_Mono({
 
 const leftColumn: Photo[] = [
   {
-    src: "/art/Solitude_in_vignette.jpg",
+    src: "/art/Solitude_in_Vignette.jpg",
     alt: "SOLITUDE IN VIGNETTE",
     description: "A drawing of the inside of my grandfather's hospital from the second floor. He passed away shortly thereafter from lung cancer.",
     date: "10.2021",
@@ -65,7 +65,7 @@ const leftColumn: Photo[] = [
     aspectRatio: "4/5"
   },
   {
-    src: "/art/Mother_nature_Digests.JPG",
+    src: "/art/Mother_Nature_Digests.JPG",
     alt: "MOTHER NATURE DIGESTS",
     description: "This painting highlights my concern for the environment through metaphorical experimentation. We normally see Mother Nature as this powerful being, representing all life on Earth. However, I added a twist, displaying her suffering as she slowly gets consumed and overwhelmed by the garbage she is 'responsible' for cleaning up. Through this artwork, I emphasize that there is a limit to what Mother Nature can do for our irresponsible, immature — that it’s time we take matters into our own hands and help her clean the Earth.",
     date: "05.2021",

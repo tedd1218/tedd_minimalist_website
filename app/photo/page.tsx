@@ -32,7 +32,7 @@ const leftColumn = [
   },
 
   {
-    src: "/photo/banff.JPG",
+    src: "/photo/banff.jpg",
     alt: "LAKE LOUISE",
     description: "Mountains in Lake Louise in Banff National Park, Alberta, Canada",
     date: "05.24.2024",
@@ -68,7 +68,7 @@ const leftColumn = [
     aspectRatio: "4/5"
   },
   {
-    src: "/photo/hands.JPG",
+    src: "/photo/hands.jpg",
     alt: "HANDS",
     description: "Sculpture of hands in the Eden Paradise Hotel in Gyeonggi-do, South Korea",
     date: "07.23.2018",
