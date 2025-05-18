@@ -37,11 +37,7 @@ export default function LightDarkToggle() {
         layout
         initial={false}
         animate={{ x: knobX }}
-        transition={
-          userToggled
-            ? { type: "spring", stiffness: 500, damping: 30 }
-            : { duration: 0 }
-        }
+        transition={userToggled ? { type: "spring", stiffness: 500, damping: 30 } : undefined}
         className="absolute w-8 h-8 rounded-full bg-[#FFF5C0] border-4 border-[#FFB53E] dark:bg-[#BCC5F0] dark:border-[#303867]"
       />
     </button>
