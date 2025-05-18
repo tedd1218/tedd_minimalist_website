@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={cn("antialiased")}> 
         <ThemeProvider attribute="class" disableTransitionOnChange defaultTheme="light">
           <div className="fixed top-4 right-6 z-50">
-            <LightDarkToggle key="theme-toggle" />
+            <LightDarkToggle />
           </div>
           <NavigationWrapper />
           {children}
