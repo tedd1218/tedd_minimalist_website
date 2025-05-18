@@ -12,9 +12,7 @@ export default function LightDarkToggle() {
   if (!mounted) return null;
 
   const isDark = theme === "dark";
-
-  // Knob positions: left (0px) and right (44px) for a 112px wide toggle (w-28)
-  const knobX = isDark ? 44 : 0;
+  const knobX = mounted ? (isDark ? 44 : 0) : undefined;
 
   return (
     <button
@@ -35,6 +33,11 @@ export default function LightDarkToggle() {
         layout
         initial={false}
         animate={{ x: knobX }}
+        transition={{
+          type: "spring",
+          stiffness: 500,
+          damping: 30,
+        }}
         className="absolute w-8 h-8 rounded-full bg-[#FFF5C0] border-4 border-[#FFB53E] dark:bg-[#BCC5F0] dark:border-[#303867]"
       />
     </button>
