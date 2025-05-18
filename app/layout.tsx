@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
 import LightDarkToggle from "../components/LightDarkToggle";
+import ScrollToTop from "../components/ScrollToTop";
 
 const victorMono = Victor_Mono({
   subsets: ["latin"]
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en" className={victorMono.className} suppressHydrationWarning>
       <body className={cn("antialiased")}> 
         <ThemeProvider attribute="class" disableTransitionOnChange defaultTheme="light">
+          <ScrollToTop />
           <div className="fixed top-4 right-6 z-50">
             <LightDarkToggle />
           </div>
