@@ -4,6 +4,18 @@
 @custom-variant dark (&:is(.dark *));
 @import "./themes.css";
 
+
+.prose h1 {
+  font-size: 1.5rem;
+  font-family: 'Victor Mono', monospace;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+.prose p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -78,7 +90,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #121212;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);

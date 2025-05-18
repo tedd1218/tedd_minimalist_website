@@ -77,11 +77,13 @@ function NavItem({ href, label, icon }: NavItemProps) {
   return (
     <Link
       href={href}
-      className="flex flex-col items-center justify-center rounded-[21px] transition-colors duration-200"
+      className="flex flex-col items-center justify-center rounded-[21px] transition-colors duration-200 group"
     >
-      <span className="group flex flex-col items-center justify-center bg-white rounded-xl px-4 py-3 w-20 h-20 dark:bg-[#262626] hover:bg-[#444444] dark:hover:bg-gray-200 transition-colors duration-200 mx-3">
-        <Image src={icon} alt={label} width={40} height={40} className="mb-1" />
-        <span className={`text-[10px] font-[1000] text-base font-mono tracking-wide text-black dark:text-white -mt-1 ${victorMono.className} group-hover:text-white dark:group-hover:text-black`}>{label}</span>
+      <span className="flex flex-col items-center justify-center bg-white rounded-xl px-4 py-3 w-20 h-20 dark:bg-[#262626] hover:bg-[#444444] dark:hover:bg-gray-200 transition-colors duration-200 mx-3">
+        <Image src={icon} alt={label} width={40} height={40}/>
+        {/* <span className={`text-[10px] font-[1000] text-base font-mono tracking-wide text-black dark:text-white opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 ${victorMono.className} group-hover:text-white dark:group-hover:text-black`}>
+          {label}
+        </span> */}
       </span>
     </Link>
   );
