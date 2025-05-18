@@ -34,7 +34,7 @@ export default function RootLayout({
             <LightDarkToggle />
           </div>
           <NavigationWrapper />
-          {children}
+            {children}
         </ThemeProvider>
       </body>
     </html>

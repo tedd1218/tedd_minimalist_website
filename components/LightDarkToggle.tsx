@@ -13,6 +13,7 @@ export default function LightDarkToggle() {
   if (!mounted) return null;
 
   const isDark = theme === "dark";
+
   const knobX = isDark ? 44 : 0;
 
   const transition = userToggled
@@ -37,7 +38,7 @@ export default function LightDarkToggle() {
         <Image src="/icons/sun.svg" alt="sun" width={50} height={50} />
       </span>
 
-      {/* Animated Knob — NO more layout prop! */}
+      {/* Animated Knob */}
       <motion.span
         initial={false}
         animate={{ x: knobX }}
