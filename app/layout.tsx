@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={victorMono.className} suppressHydrationWarning>
       <body className={cn("antialiased")}> 
-        <ThemeProvider attribute="class" disableTransitionOnChange>
+        <ThemeProvider attribute="class" disableTransitionOnChange defaultTheme="light">
           <div className="fixed top-4 right-6 z-50">
             <LightDarkToggle />
           </div>
