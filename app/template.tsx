@@ -6,6 +6,14 @@ import { usePathname } from "next/navigation";
 export default function Template({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
+  // Disable animation for blog index and blog post pages
+  const isBlog = pathname.startsWith("/blog/");
+
+  if (isBlog) {
+    // Just render children with no animation for blog pages
+    return <div style={{ height: "100%" }}>{children}</div>;
+  }
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
