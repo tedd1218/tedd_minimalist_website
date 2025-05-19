@@ -20,6 +20,37 @@ const TAG_COLORS: { [key: string]: string } = {
   "#Travel": "text-[#A56644] dark:text-[#A56644]"
 };
 
+function safeDateString(date: string | undefined) {
+  if (!date) return '';
+  try {
+    // Handle MM-DD-YYYY format
+    const parts = date.split('-');
+    if (parts.length === 3) {
+      const [month, day, year] = parts;
+      const parsedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+      if (!isNaN(parsedDate.getTime())) {
+        return parsedDate.toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+        });
+      }
+    }
+    // Fallback to standard date parsing
+    const d = new Date(date);
+    if (!isNaN(d.getTime())) {
+      return d.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      });
+    }
+    return '';
+  } catch (error) {
+    return '';
+  }
+}
+
 export default function BlogPost() {
   const { slug } = useParams();
   const [post, setPost] = useState<any>(null);
@@ -54,13 +85,7 @@ export default function BlogPost() {
       <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
         {/* Date */}
         <div className={`text-[#667085] text-md font-mono mt-20 font-semibold dark:text-[#667085] ${victorMono.className}`}>
-          {data.date
-            ? new Date(data.date).toLocaleDateString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-              })
-            : ''}
+          {safeDateString(data.date)}
         </div>
         {/* Title */}
         <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-2 ${victorMono.className}`}>
