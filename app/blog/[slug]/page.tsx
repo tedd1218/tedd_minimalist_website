@@ -1,44 +1,36 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
-import { Victor_Mono, IBM_Plex_Mono } from 'next/font/google';
-import Image from 'next/image';
+"use client";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { Victor_Mono, IBM_Plex_Mono } from "next/font/google";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
-interface PageProps {
-  // In Next.js 15+, params is now a Promise
-  params: Promise<{ slug: string }>;
-}
+const victorMono = Victor_Mono({ subsets: ['latin'] });
+const ibmMono = IBM_Plex_Mono({ weight: ['400'], subsets: ['latin'] });
 
-const victorMono = Victor_Mono({
-  subsets: ['latin'],
-});
+export default function BlogPost() {
+  const { slug } = useParams();
+  const [post, setPost] = useState<any>(null);
 
-const ibmMono = IBM_Plex_Mono({
-  weight: ['400'],
-  subsets: ['latin'],
-});
+  useEffect(() => {
+    fetch(`/api/blog/${slug}`)
+      .then(res => res.json())
+      .then(setPost);
+  }, [slug]);
 
-export default async function BlogPost({ params }: PageProps) {
-  // await the params promise to get your slug
-  const { slug } = await params;
-
-  const filePath = path.join(process.cwd(), 'content/blog', `${slug}.md`);
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { data, content } = matter(fileContents);
-
-  const processedContent = await remark().use(html).process(content);
-  const contentHtml = processedContent.toString();
+  if (!post) return null;
+  const { data, contentHtml } = post;
 
   return (
-    <main className={`${ibmMono.className} flex flex-col min-h-screen px-4 py-8`}>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className={`${ibmMono.className} flex flex-col min-h-screen px-4 py-8`}
+    >
       <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
-
         {/* Date */}
-        <div
-          className={`text-[#667085] text-md font-mono mt-20 font-semibold ${victorMono.className}`}
-        >
+        <div className={`text-[#667085] text-md font-mono mt-20 font-semibold ${victorMono.className}`}>
           {data.date
             ? new Date(data.date).toLocaleDateString('en-US', {
                 month: 'long',
@@ -47,29 +39,19 @@ export default async function BlogPost({ params }: PageProps) {
               })
             : ''}
         </div>
-
         {/* Title */}
-        <h1
-          className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-2 ${victorMono.className}`}
-        >
+        <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-2 ${victorMono.className}`}>
           {data.title}
         </h1>
-
         {/* Meta row */}
         <div className="flex flex-col items-start gap-2 text-[#667085] text-xl font-mono mb-2">
           {/* Author */}
           <span className={`flex items-center gap-2 text-sm ${ibmMono.className}`}>
             <span className="relative w-4 h-4">
-              <Image
-                src="/icons/author.svg"
-                alt={data.author || 'Author'}
-                fill
-                className="object-contain rounded"
-              />
+              <Image src="/icons/author.svg" alt={data.author || 'Author'} fill className="object-contain rounded" />
             </span>
             {data.author || 'Unknown Author'}
           </span>
-
           {/* Tags */}
           <span className={`flex items-center gap-2 text-sm ${ibmMono.className}`}>
             <span className="relative w-4 h-4">
@@ -81,7 +63,6 @@ export default async function BlogPost({ params }: PageProps) {
                 : data.tags
               : ''}
           </span>
-
           {/* Reading time */}
           <span className={`flex items-center gap-2 text-sm ${ibmMono.className}`}>
             <span className="relative w-4 h-4">
@@ -90,13 +71,11 @@ export default async function BlogPost({ params }: PageProps) {
             {data.readtime || ''}
           </span>
         </div>
-
         {/* Underline */}
         <div className="h-1 w-60 bg-[#E85860] mb-10" />
-
         {/* Content */}
         <article className="prose -mt-5" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       </div>
-    </main>
+    </motion.main>
   );
 }

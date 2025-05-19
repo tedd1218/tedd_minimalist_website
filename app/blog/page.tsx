@@ -1,28 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import Link from 'next/link';
-import { Victor_Mono, IBM_Plex_Mono } from 'next/font/google';
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Victor_Mono, IBM_Plex_Mono } from "next/font/google";
 
-export const dynamic = 'force-static'; // SSG
-
-type PostMeta = {
-  title?: string;
-  date?: string;
-  tags?: string[] | string;
-  author?: string;
-  readtime?: string;
-  slug: string;
-};
-
-const ibmMono = IBM_Plex_Mono({
-  weight: ["400"],
-  subsets: ["latin"]
-});
-
-const victorMono = Victor_Mono({
-  subsets: ["latin"]
-});
+const ibmMono = IBM_Plex_Mono({ weight: ["400"], subsets: ["latin"] });
+const victorMono = Victor_Mono({ subsets: ["latin"] });
 
 function getYear(date: string | undefined) {
   if (!date) return 'Unknown';
@@ -30,7 +12,6 @@ function getYear(date: string | undefined) {
   if (!isNaN(d.getTime())) {
     return d.getFullYear().toString();
   }
-  // fallback: try to extract 4-digit year from string
   const match = date.match(/\d{4}/);
   return match ? match[0] : 'Unknown';
 }
@@ -40,38 +21,22 @@ function safeDateString(date: string | undefined) {
 }
 
 export default function BlogIndex() {
-  const postsDirectory = path.join(process.cwd(), 'content/blog');
-  let filenames: string[] = [];
-  try {
-    filenames = fs.readdirSync(postsDirectory);
-  } catch {
-    filenames = [];
-  }
+  const [posts, setPosts] = useState<any[]>([]);
 
-  const posts: PostMeta[] = filenames.filter(f => f.endsWith('.md')).map(filename => {
-    const filePath = path.join(postsDirectory, filename);
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data } = matter(fileContents);
-    const slug = filename.replace(/\.md$/, '');
-    return {
-      title: data.title || slug,
-      date: data.date || '',
-      tags: data.tags || [],
-      author: data.author || '',
-      readtime: data.readtime || '',
-      slug,
-    };
-  });
+  useEffect(() => {
+    fetch("/api/blog")
+      .then(res => res.json())
+      .then(setPosts);
+  }, []);
 
   // Group posts by year
-  const postsByYear: { [year: string]: PostMeta[] } = {};
+  const postsByYear: { [year: string]: any[] } = {};
   posts.forEach(post => {
     const year = getYear(post.date);
     if (!postsByYear[year]) postsByYear[year] = [];
     postsByYear[year].push(post);
   });
 
-  // Sort years descending
   const sortedYears = Object.keys(postsByYear).sort((a, b) => b.localeCompare(a));
 
   return (
