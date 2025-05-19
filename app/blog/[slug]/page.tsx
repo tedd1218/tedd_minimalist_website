@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { Victor_Mono, IBM_Plex_Mono } from "next/font/google";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const victorMono = Victor_Mono({ subsets: ['latin'] });
 const ibmMono = IBM_Plex_Mono({ weight: ['400'], subsets: ['latin'] });
@@ -28,6 +29,17 @@ export default function BlogPost() {
       transition={{ duration: 0.5, ease: "easeInOut" }}
       className={`${ibmMono.className} flex flex-col min-h-screen px-4 py-8`}
     >
+      {/* Return to Blog Home Button */}
+      <Link
+        href="/blog"
+        className="fixed left-4 top-9 -translate-y-1/2 z-40 flex items-center group"
+        aria-label="Back to Blog Home"
+      >
+        <Image src="/icons/leftarrow.svg" alt="Back" width={48} height={48} className=""/>
+        <span className={`ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-base font-bold text-[#667085] dark:text-gray-200 ${victorMono.className}`}>
+          BLOG HOME
+        </span>
+      </Link>
       <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
         {/* Date */}
         <div className={`text-[#667085] text-md font-mono mt-20 font-semibold ${victorMono.className}`}>
@@ -74,7 +86,7 @@ export default function BlogPost() {
         {/* Underline */}
         <div className="h-1 w-60 bg-[#E85860] mb-10" />
         {/* Content */}
-        <article className="prose -mt-5" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <article className="prose space-y-5 -mt-5" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       </div>
     </motion.main>
   );
