@@ -51,7 +51,26 @@ function getYear(date: string | undefined) {
 }
 
 function safeDateString(date: string | undefined) {
-  return date ? new Date(date).toLocaleString('en-US', { month: 'short', day: 'numeric' }).toUpperCase() : '';
+  if (!date) return '';
+  try {
+    const d = new Date(date);
+    if (isNaN(d.getTime())) {
+      // Try parsing the date string manually if it's in a different format
+      const parts = date.split(/[-/]/);
+      if (parts.length === 3) {
+        // Assuming format is YYYY-MM-DD or YYYY/MM/DD
+        const [year, month, day] = parts;
+        const parsedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+        if (!isNaN(parsedDate.getTime())) {
+          return parsedDate.toLocaleString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+        }
+      }
+      return '';
+    }
+    return d.toLocaleString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+  } catch (error) {
+    return '';
+  }
 }
 
 export default function BlogIndex() {

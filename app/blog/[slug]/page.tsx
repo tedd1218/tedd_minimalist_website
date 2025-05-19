@@ -9,6 +9,17 @@ import Link from "next/link";
 const victorMono = Victor_Mono({ subsets: ['latin'] });
 const ibmMono = IBM_Plex_Mono({ weight: ['400'], subsets: ['latin'] });
 
+const TAG_COLORS: { [key: string]: string } = {
+  "#Essay": "text-[#EA2B2B] dark:text-[#EA2B2B]",
+  "#Food": "text-[#FF8800] dark:text-[#FF8800]",
+  "#Journal": "text-[#FFCC00] dark:text-[#FFCC00]",
+  "#Media/Film": "text-[#58A700] dark:text-[#58A700]",
+  "#Politics": "text-[#1CB0F6] dark:text-[#1CB0F6]",
+  "#Sports": "text-cyan-600 dark:text-cyan-600",
+  "#Tech": "text-[#9345C6] dark:text-[#9345C6]",
+  "#Travel": "text-[#A56644] dark:text-[#A56644]"
+};
+
 export default function BlogPost() {
   const { slug } = useParams();
   const [post, setPost] = useState<any>(null);
@@ -71,8 +82,14 @@ export default function BlogPost() {
             </span>
             {data.tags
               ? Array.isArray(data.tags)
-                ? data.tags.map((tag: string) => `#${tag}`).join(' ')
-                : data.tags
+                ? data.tags.map((tag: string) => (
+                    <span key={tag} className={TAG_COLORS[`#${tag}`] || "text-[#667085] dark:text-[#667085]"}>
+                      #{tag}
+                    </span>
+                  )).join(' ')
+                : <span className={TAG_COLORS[data.tags] || "text-[#667085] dark:text-[#667085]"}>
+                    {data.tags}
+                  </span>
               : ''}
           </span>
           {/* Reading time */}
