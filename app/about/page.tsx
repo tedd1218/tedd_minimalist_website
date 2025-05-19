@@ -47,7 +47,7 @@ export default function About() {
         <p className="mb-4 text-lg">If you're just browsing, I hope you enjoy exploring my site.</p>
         <p className="mb-8 text-lg">
           If you're a recruiter, feel free to check out my{' '}
-          <Link href="/resume" style={{ color: '#E85860' }} className="underline hover:opacity-80">resume</Link>.
+          <Link href="/tedd_resume.pdf" style={{ color: '#E85860' }} target="_blank" className="underline hover:opacity-80">resume</Link>.
         </p>
       </div>
     </main>
