@@ -5,8 +5,8 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
-export async function GET(request: Request, { params }: { params: { slug: string } }) {
-  const { slug } = params;
+export async function GET(request: Request, context: { params: Promise<{ slug: string }> }) {
+  const { slug } = await context.params;
   const filePath = path.join(process.cwd(), 'content/blog', `${slug}.md`);
   try {
     const fileContents = fs.readFileSync(filePath, 'utf8');
