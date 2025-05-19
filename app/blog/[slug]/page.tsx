@@ -42,7 +42,7 @@ export default function BlogPost() {
       </Link>
       <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
         {/* Date */}
-        <div className={`text-[#667085] text-md font-mono mt-20 font-semibold ${victorMono.className}`}>
+        <div className={`text-[#667085] text-md font-mono mt-20 font-semibold dark:text-[#667085] ${victorMono.className}`}>
           {data.date
             ? new Date(data.date).toLocaleDateString('en-US', {
                 month: 'long',
@@ -56,7 +56,7 @@ export default function BlogPost() {
           {data.title}
         </h1>
         {/* Meta row */}
-        <div className="flex flex-col items-start gap-2 text-[#667085] text-xl font-mono mb-2">
+        <div className="flex flex-col items-start gap-2 text-[#667085] text-xl font-mono mb-2 dark:text-[#667085]">
           {/* Author */}
           <span className={`flex items-center gap-2 text-sm ${ibmMono.className}`}>
             <span className="relative w-4 h-4">

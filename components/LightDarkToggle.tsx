@@ -53,7 +53,8 @@ export default function LightDarkToggle() {
           bg-[#FFF5C0] 
           border-4 border-[#FFB53E] 
           dark:bg-[#BCC5F0] 
-          dark:border-[#303867]"
+          dark:border-[#303867]
+          cursor-pointer"
       />
     </button>
   );

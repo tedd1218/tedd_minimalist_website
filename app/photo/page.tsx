@@ -147,7 +147,7 @@ export default function Photo() {
   return (
     <main className="flex flex-col min-h-screen px-4 py-8">
       <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
-        <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-10 mt-20 ${victorMono.className}`}>PHOTO</h1>
+        <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-10 mt-20 ${victorMono.className}`}>PHOTOGRAPHY</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl mx-auto">
           {/* Left column */}
           <div className="flex flex-col gap-10">

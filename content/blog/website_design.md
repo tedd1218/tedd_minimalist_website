@@ -2,7 +2,7 @@
 title: "Website Design Choices"
 date: "05-18-2025"
 author: "Tedd Jung"
-tags: "#WebDev #Design"
+tags: "#Tech"
 readtime: "10 Min Read"
 
 ---
