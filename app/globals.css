@@ -22,11 +22,6 @@
   font-size: 1.125rem;
 }
 
-.prose img {
-  width: 70%;
-  margin: 0 auto;
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

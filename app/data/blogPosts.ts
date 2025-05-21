@@ -15,6 +15,14 @@ const blogPosts: BlogPost[] = [
     author: "Tedd Jung",
     readtime: "11 Min Read",
     slug: "death"
+  },
+  {
+    title: "My Grandfather’s Harmonium",
+    date: "05-21-2025",
+    tags: ["#Journal"],
+    author: "Isha Jayadev",
+    readtime: "11 Min Read",
+    slug: "harmonium"
   }
 ];
 
