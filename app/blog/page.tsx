@@ -113,7 +113,7 @@ export default function BlogIndex() {
   return (
     <main className={`${ibmMono.className} flex flex-col min-h-screen px-4 py-8`}>
       <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
-        <div className="flex items-center justify-between w-full mb-7 mt-20">
+        <div className="flex items-center justify-between w-full mb-7 mt-17">
           <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider ${victorMono.className}`}>BLOG</h1>
           <div className="relative">
             <button
@@ -160,7 +160,7 @@ export default function BlogIndex() {
           </div>
         </div>
         {selectedTags.length > 0 && (
-          <div className="flex flex-wrap gap-2 -mt-5 mb-4">
+          <div className="flex flex-wrap gap-2 -mt-7 mb-5">
             {selectedTags.map(tag => (
               <span
                 key={tag}
@@ -193,7 +193,7 @@ export default function BlogIndex() {
           </div>
         ) : (
           sortedYears.map(year => (
-            <div key={year} className="mb-10 w-full">
+            <div key={year} className="-mt-2 mb-10 w-full">
               <h2 className={`text-3xl font-mono font-bold text-[#667085] mb-2 dark:text-gray-400 ${victorMono.className}`}>{year}</h2>
               <ul>
                 {postsByYear[year]

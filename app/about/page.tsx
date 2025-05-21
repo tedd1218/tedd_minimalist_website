@@ -27,7 +27,7 @@ export default function About() {
           This site is a curated showcase of my work — from coding projects to visual art and photography.
         </p>
         <p className="mb-4 text-lg">
-          You'll also find my blog, where I share my thoughts on a variety of topics, including politics, sports, and pop culture.
+          You’ll also find my blog, where I share my own insights — and occasionally those of my friends — on a wide range of topics.
         </p>
         <p className="mb-4 text-lg">
           As a fan of minimalist design, I built this website to reflect the idea that less is more. Complicated visuals and flashy animations aren't always necessary to communicate effectively — in fact, I believe simplicity often conveys ideas more clearly and powerfully.
@@ -49,7 +49,7 @@ export default function About() {
           If you're a recruiter, feel free to check out my{' '}
           <Link href="/tedd_resume.pdf" style={{ color: '#E85860' }} target="_blank" className="underline hover:opacity-80">resume</Link>.
         </p>
-        <p className="mb-8 text-lg">And special thanks to <a href="https://angezanetti.com/" className="underline text-[#E85860] hover:opacity-80" target="_blank" rel="noopener noreferrer">Xavier Coiffard</a> and <a href="https://pixelwrld.co//" className="underline text-[#E85860] hover:opacity-80" target="_blank" rel="noopener noreferrer">Roman Tesliuk</a> for the design inspiration.</p>
+        <p className="mb-8 text-lg">And a special thanks to <a href="https://angezanetti.com/" className="underline text-[#E85860] hover:opacity-80" target="_blank" rel="noopener noreferrer">Xavier Coiffard</a> and <a href="https://pixelwrld.co//" className="underline text-[#E85860] hover:opacity-80" target="_blank" rel="noopener noreferrer">Roman Tesliuk</a> for the website design inspiration.</p>
       </div>
     </main>
   );
