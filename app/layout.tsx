@@ -16,6 +16,11 @@ const victorMono = Victor_Mono({
 //   subsets: ["latin"]
 // });
 
+export const metadata: Metadata = {
+  title: "Tedd Jung",
+  description: "Personal website of Tedd Jung",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
