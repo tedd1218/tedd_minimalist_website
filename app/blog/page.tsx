@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Victor_Mono, IBM_Plex_Mono } from "next/font/google";
 import Image from "next/image";
+import blogPosts from "../data/blogPosts";
 
 const ibmMono = IBM_Plex_Mono({ weight: ["400"], subsets: ["latin"] });
 const victorMono = Victor_Mono({ subsets: ["latin"] });
@@ -74,15 +75,8 @@ function safeDateString(date: string | undefined) {
 }
 
 export default function BlogIndex() {
-  const [posts, setPosts] = useState<any[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  useEffect(() => {
-    fetch("/api/blog")
-      .then(res => res.json())
-      .then(setPosts);
-  }, []);
 
   // Use only preselected tags
   const allTags = PRESELECTED_TAGS;
@@ -99,12 +93,12 @@ export default function BlogIndex() {
   };
 
   const filteredPosts = selectedTags.length
-    ? posts.filter(post =>
+    ? blogPosts.filter(post =>
         Array.isArray(post.tags)
           ? post.tags.some((t: string) => selectedTags.includes(t))
           : selectedTags.includes(post.tags)
       )
-    : posts;
+    : blogPosts;
 
   // Group posts by year
   const postsByYear: { [year: string]: any[] } = {};
@@ -127,13 +121,22 @@ export default function BlogIndex() {
               onClick={() => setShowDropdown(v => !v)}
               aria-label="Filter by tag"
             >
-              <Image
-                src="/icons/filterhorz.svg"
-                alt="Filter"
-                width={40}
-                height={40}
-                className="transition-transform duration-200 ease-in-out hover:scale-125 cursor-pointer"
-              />
+              <span className="relative w-12 h-12 block">
+                {/* Light mode icon */}
+                <Image
+                  src="/icons/filterblack.svg"
+                  alt="Filter"
+                  fill
+                  className="block dark:hidden transition-transform duration-200 ease-in-out hover:scale-125 cursor-pointer"
+                />
+                {/* Dark mode icon */}
+                <Image
+                  src="/icons/filterwhite.svg"
+                  alt="Filter"
+                  fill
+                  className="hidden dark:block transition-transform duration-200 ease-in-out hover:scale-125 cursor-pointer"
+                />
+              </span>
             </button>
             {showDropdown && (
               <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded shadow-lg z-50">

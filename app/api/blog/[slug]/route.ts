@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
+import MarkdownIt from 'markdown-it';
 
 export async function GET(request: Request, context: { params: Promise<{ slug: string }> }) {
   const { slug } = await context.params;
@@ -11,8 +10,12 @@ export async function GET(request: Request, context: { params: Promise<{ slug: s
   try {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
-    const processedContent = await remark().use(html).process(content);
-    const contentHtml = processedContent.toString();
+    const md = new MarkdownIt({
+      html: true,
+      linkify: true,
+      typographer: true,
+    });
+    const contentHtml = md.render(content);
     return NextResponse.json({ data, contentHtml });
   } catch {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });

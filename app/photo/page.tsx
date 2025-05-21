@@ -18,14 +18,14 @@ const leftColumn = [
   {
     src: "/photo/beerwall.JPG",
     alt: "NEELAY'S BEER WALL",
-    description: "Neelay's beer wall in his apartment at State College, PA",
+    description: "Neelay's beer wall in his apartment at State College, PA.",
     date: "04.29.2025",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/bellmtn.JPG",
     alt: "BELL MOUNTAIN",
-    description: "Sunset at Bell Mountain in Hiawasse, GA",
+    description: "Sunset at Bell Mountain in Hiawasse, GA.",
     date: "01.03.2025",
     className: "w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5"
@@ -34,21 +34,21 @@ const leftColumn = [
   {
     src: "/photo/banff.JPG",
     alt: "LAKE LOUISE",
-    description: "Mountains in Lake Louise in Banff National Park, Alberta, Canada",
+    description: "Mountains in Lake Louise in Banff National Park, Alberta, Canada.",
     date: "05.24.2024",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/cancun.JPG",
     alt: "SUNRISE",
-    description: "Dreamy sunrise on the beach of Occidental Tucancún in Cancun, Mexico",
+    description: "Dreamy sunrise on the beach of Occidental Tucancún in Cancun, Mexico.",
     date: "08.16.2023",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/busan.JPG",
     alt: "BUSAN",
-    description: "A boat under the Gwangan Bridge in Busan, South Korea",
+    description: "A boat under the Gwangan Bridge in Busan, South Korea.",
     date: "06.12.2023",
     className: "w-full aspect-[4/5.35] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5.35"
@@ -56,21 +56,21 @@ const leftColumn = [
   {
     src: "/photo/amsterdam.JPG",
     alt: "AMSTERDAM",
-    description: "Victoria Hotel near Amsterdam Central Station in Amsterdam, Netherlands",
+    description: "Victoria Hotel near Amsterdam Central Station in Amsterdam, Netherlands.",
     date: "03.05.2023",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/sunset.JPG",
     alt: "SUNSET",
-    description: "A beautiful sunset at the intersection of Bell Road and McGinnis Ferry Road",
+    description: "A beautiful sunset at the intersection of Bell Road and McGinnis Ferry Road.",
     date: "08.18.2022",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/hands.jpg",
     alt: "HANDS",
-    description: "Sculpture of hands in the Eden Paradise Hotel in Gyeonggi-do, South Korea",
+    description: "Sculpture of hands in the Eden Paradise Hotel in Gyeonggi-do, South Korea.",
     date: "07.23.2018",
     className: "w-full aspect-[4/2.79] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/2.79"
@@ -81,28 +81,28 @@ const rightColumn = [
   {
     src: "/photo/montserrat.JPG",
     alt: "MONTSERRAT",
-    description: "Santa Maria de Montserrat Abbey in Catalonia, Spain",
+    description: "Santa Maria de Montserrat Abbey in Catalonia, Spain.",
     date: "03.04.2025",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/forest.JPG",
     alt: "FOREST",
-    description: "The Forests of Schenley Park in Pittsburgh, PA",
+    description: "The Forests of Schenley Park in Pittsburgh, PA.",
     date: "07.10.2024",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/morantcurve.JPG",
     alt: "MORANT'S CURVE",
-    description: "Famous train curve on Bow Valley Parkway in Banff National Park, Alberta, Canada",
+    description: "Famous train curve on Bow Valley Parkway in Banff National Park, Alberta, Canada.",
     date: "05.24.2024",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/pointstate.JPG",
     alt: "POINT STATE PARK",
-    description: "July 4th at Point State Park in Pittsburgh, PA",
+    description: "July 4th at Point State Park in Pittsburgh, PA.",
     date: "07.04.2023",
     className: "w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5"
@@ -110,28 +110,28 @@ const rightColumn = [
   {
     src: "/photo/schenley.JPG",
     alt: "SCHENLEY PARK",
-    description: "Blinking headlights at Schenley Park in Pittsburgh, PA",
+    description: "Blinking headlights at Schenley Park in Pittsburgh, PA.",
     date: "04.15.2023",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/carnegie.JPG",
     alt: "SNOWFALL",
-    description: "Snowfall at the intersection of Morewood Avenue and Forbes Avenue in Pittsburgh, PA",
+    description: "Snowfall at the intersection of Morewood Avenue and Forbes Avenue in Pittsburgh, PA.",
     date: "01.31.2023",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/riverwalk.JPG",
     alt: "RIVERWALK",
-    description: "Sunset outside Riverwalk in Johns Creek, GA",
+    description: "Sunset outside Riverwalk in Johns Creek, GA.",
     date: "08.05.2022",
     aspectRatio: "4/5"
   },
   {
     src: "/photo/waterfall.jpg",
     alt: "JIONNOTAKI",
-    description: "Waterfall in Kusu, Japan",
+    description: "Waterfall in Kusu, Japan.",
     date: "07.18.2018",
     className: "w-full aspect-[4/2.83] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/2.83"

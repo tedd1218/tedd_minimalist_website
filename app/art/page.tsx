@@ -27,7 +27,7 @@ const leftColumn: Photo[] = [
   {
     src: "/art/Solitude_in_Vignette.jpg",
     alt: "SOLITUDE IN VIGNETTE",
-    description: "A drawing of the inside of my grandfather's hospital from the second floor. He passed away shortly thereafter from lung cancer.",
+    description: "A drawing of the inside of my grandfather's hospital from the second floor.",
     date: "10.2021",
     className: "w-full aspect-[4/3] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/3"
@@ -35,7 +35,7 @@ const leftColumn: Photo[] = [
   {
     src: "/art/Alley.jpg",
     alt: "ALLEY",
-    description: "My love for alleys is quite unique, and I first noticed this on a trip to Japan. Here, I replicated a picture I took of a narrow path filled with overgrown plants and closed shops. To emphasize the antique, traditional sentiment I initially felt, I used an age-old technique called printmaking. Utilizing a technique from the past while portraying today in black-and-white, I established an everlasting connection between the past and the present. ",
+    description: "A printmaking of an alleyway in Japan.",
     date: "01.2020",
     className: "w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5"
@@ -43,7 +43,7 @@ const leftColumn: Photo[] = [
   {
     src: "/art/Busan.jpeg",
     alt: "BUSAN",
-    description: "As part of my experimentation with alleyways, this painting uses geometric and semi-abstract techniques to essentially create a simplified world, devoid of any complex lines or structures. The world is filled with complex ideas and ever changing principles, so I thought it would be a great experiment to try to perceive beyond reality and into the unknown.",
+    description: "A geometric reimagination of an alleyway in Busan, South Korea.",
     date: "03.2020",
     className: "w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5"
@@ -51,7 +51,7 @@ const leftColumn: Photo[] = [
   {
     src: "/art/Engraved_in_Time.JPG",
     alt: "ENGRAVED IN TIME",
-    description: "At first glance, this drawing appears to show my mother decades ago in a traditional Korean hanbok. But the subtle bursts of color along the edges underscore the idea of rosy retrospection — our tendency to infuse otherwise dull, black-and-white memories with vivid hues to make them feel more real. Rosy retrospection is just one of the nostalgia-driven cognitive biases that recur throughout my work.",
+    description: "A color pencil drawing of my mother in a traditional Korean hanbok.",
     date: "02.2021",
     className: "w-full aspect-[4/6] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/6"
@@ -59,7 +59,7 @@ const leftColumn: Photo[] = [
   {
     src: "/art/The_Swings_of_Childhood_Nostalgia.jpg",
     alt: "THE SWINGS OF CHILDHOOD NOSTALGIA",
-    description: "The original yellow swing in the background is the swing my mother played on when she was a child. Wanting to share the same joy, I added drawings of my sister and me, overlapping our shared memories. Through this, I explored the idea of nostalgia: connecting my mother’s memory of the swing and my love for them.",
+    description: "A yellow swing from my mother's childhood overlayed with drawings of my sister and me.",
     date: "12.2020",
     className: "w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5"
@@ -67,7 +67,7 @@ const leftColumn: Photo[] = [
   {
     src: "/art/Mother_Nature_Digests.JPG",
     alt: "MOTHER NATURE DIGESTS",
-    description: "This painting highlights my concern for the environment through metaphorical experimentation. We normally see Mother Nature as this powerful being, representing all life on Earth. However, I added a twist, displaying her suffering as she slowly gets consumed and overwhelmed by the garbage she is 'responsible' for cleaning up. Through this artwork, I emphasize that there is a limit to what Mother Nature can do for our irresponsible, immature — that it’s time we take matters into our own hands and help her clean the Earth.",
+    description: "An environmental message about the consequences of our negligence, portrayed through a metaphor of Mother Nature digesting garbage.",
     date: "05.2021",
     className: "w-full aspect-[4/4.1] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/4.1" 
@@ -75,7 +75,7 @@ const leftColumn: Photo[] = [
   {
     src: "/art/Passerby_of_Reflected_Ignorance.jpeg",
     alt: "PASSERBY OF REFLECTED IGNORANCE",
-    description: "Located at a beautiful storefront in the middle of San Francisco, this artwork displays a mirrored window of bystanders walking unknowingly, unaware of their reflection. Hence, their reflected ignorance. Sometimes we need to take a moment and glance at our reflection, to understand who we really are as human beings.",
+    description: "A color pencil drawing of a passerby in front of a mirrored window.",
     date: "06.2020",
     className: "w-full aspect-[4/5.3] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5.3"
@@ -83,7 +83,7 @@ const leftColumn: Photo[] = [
   {
     src: "/art/Faces.jpg",
     alt: "FACES",
-    description: "Sometimes when I’m in a pensive mood, I like to draw various poses that I find myself in, especially while I’m thinking. In a quick 30 minutes, a couple of lines turn into a full on self portrait that represents myself when I’m in a calm, tranquil state.",
+    description: "Some sketches of my face.",
     date: "09.2021",
     className: "w-full aspect-[4/5.5] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5.5"
@@ -94,7 +94,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/Birthplace.jpeg",
     alt: "BIRTHPLACE",
-    description: "This artwork displays my obsession with alleyways, but with a twist. Instead of simply painting a picture, I added pictures of my young mother, showing not only her, but also her own birthplace in her hometown.",
+    description: "An alleyway in my mother's hometown, overlayed with drawings of my mother as a child.",
     date: "05.2020",
     className: "w-full aspect-[4/5.2] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5.2"
@@ -102,7 +102,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/Common_Thread.jpeg",
     alt: "COMMON THREAD",
-    description: "This artwork, from a glance, is simply a picture of my mother and my grandmother sitting on a beach. But I’ve woven in prints of myself in various poses — as though I were there with them that day — to evoke a shared nostalgia that transcends time.",
+    description: "A painting of my mother and grandmother on a beach, overlayed with drawings of me.",
     date: "08.2021",
     className: "w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5"
@@ -110,7 +110,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/Her_Precious.jpeg",
     alt: "HER PRECIOUS",
-    description: "My mother’s cupboard was always filled with green glassware, ranging from cups to bowls to dishes. These are her precious artifacts, some originating from almost two decades ago. While I admire the history behind these objects, I’m also fascinated by the beautiful green hue that reflects off the glass.",
+    description: "A watercolor painting of my mother's green glassware.",
     date: "09.2020",
     className: "w-full aspect-[4/3] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/3"
@@ -118,7 +118,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/Incheon.jpeg",
     alt: "INCHEON",
-    description: "This is another of my alleyway paintings, this time of a place in Incheon, South Korea. This was a continuation of my experimentation with simple shapes and solid colors, depicting a painting that is pleasant to the eye — like a flat design concept.",
+    description: "A dreamy painting of an alleyway in Incheon, South Korea.",
     date: "04.2020",
     className: "w-full aspect-[4/5.15] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5.15"
@@ -126,7 +126,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/Neglected.jpeg",
     alt: "NEGLECTED",
-    description: "Another one of my environmental escapades, this time I visited a junkyard filled with worn-out tires. There is so much potential for reuse in these tires, and yet they sit here to rust, abandoned and neglected. By carelessly throwing these tires away, we lose the ability to recycle the rubber in these tires, hurting the environment in the process.",
+    description: "A watercolor painting of a junkyard filled with worn-out tires.",
     date: "11.2019",
     className: "w-full aspect-[4/2.92] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/3"
@@ -134,7 +134,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/My_Plastic_Friend.jpg",
     alt: "MY PLASTIC FRIEND",
-    description: "Inspired by my concern for environmental issues, I crafted a painting displaying a healthy, blue dolphin and his dying friend, who is filled with garbage floating around in the ocean that has accumulated in its body over time. The symbolic nature of the red netted dolphin emphasizes how humanity has harmed innocent animals, both directly and indirectly.",
+    description: "An environmental message about the consequences of our negligence, portrayed through a metaphor of a dolphin filled with garbage.",
     date: "05.2021",
     className: "w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/5"
@@ -142,7 +142,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/Patriotic_Insulationism.jpg",
     alt: "PATRIOTIC INSULATIONISM",
-    description: "Blending patriotic sentiment with environmental issues, I found a perfect middle ground in the bald eagle, a once endangered species that bounced back after multiple environmental protection laws. Its resilience inspired me to create this sculpture made purely of packing peanuts, emphasizing environmentally friendly materials and responsible recycling.",
+    description: "A bald eagle made of packing peanuts.",
     date: "12.2019",
     className: "w-full aspect-[4/1.87] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/3"
@@ -150,7 +150,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/Grandfather.jpg",
     alt: "GRANDFATHER",
-    description: "As an homage to my late grandfather who passed away, I gathered corks of his favorite wine bottles and strategically placed tissue paper to replicate the last picture I took of him smiling. This is a commemoration for the man who raised me, stood by my side, and gave me the strength to take on any challenge I pursued.",
+    description: "An homage to my late grandfather, created with wine corks and tissue paper.",
     date: "08.2020",
     className: "w-full aspect-[4/6] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/6"
@@ -158,7 +158,7 @@ const rightColumn: Photo[] = [
   {
     src: "/art/Unplugged.jpg",
     alt: "UNPLUGGED",
-    description: "A vintage antique telephone with a rotary dial.",
+    description: "A printmaking of avintage antique telephone with a rotary dial.",
     date: "02.2020",
     className: "w-full aspect-[4/4.2] relative cursor-pointer transition-transform duration-200 hover:scale-105",
     aspectRatio: "4/4.2"

@@ -45,7 +45,7 @@ export default function FloatingNavbar() {
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
     >
-      <button
+      <button 
         aria-label="Open navigation"
         className={`outline-none focus:ring-2 focus:ring-primary`}
         onClick={() => setExpanded((v) => !v)}
@@ -53,14 +53,14 @@ export default function FloatingNavbar() {
         <div
           className={`flex items-center justify-center transition-all duration-300 bg-gray-200 dark:bg-zinc-700 overflow-hidden ${
             expanded
-              ? "w-[680px] h-[120px] px-2 py-2 rounded-full flex-col relative"
-              : "w-[66px] h-[29px] rounded-3xl"
+              ? "w-[90vw] sm:w-[680px] h-[90px] sm:h-[120px] px-1 sm:px-2 py-1 sm:py-2 rounded-full flex-col relative"
+              : "w-[50px] sm:w-[66px] h-[22px] sm:h-[29px] rounded-3xl"
           }`}
-        >
+      >
           <div className={`flex items-center justify-center w-full h-full transition-all duration-500 ${expanded ? 'opacity-0 scale-95 pointer-events-none absolute' : 'opacity-100 scale-100 relative'}`} style={{transitionProperty:'opacity,transform'}}>
-            <span className="block w-1.5 h-1.5 bg-gray-500 rounded-full mx-1" />
-            <span className="block w-1.5 h-1.5 bg-gray-500 rounded-full mx-1" />
-            <span className="block w-1.5 h-1.5 bg-gray-500 rounded-full mx-1" />
+            <span className="block w-1 sm:w-1.5 h-1 sm:h-1.5 bg-[#888888] rounded-full mx-0.5 sm:mx-1" />
+            <span className="block w-1 sm:w-1.5 h-1 sm:h-1.5 bg-[#888888] rounded-full mx-0.5 sm:mx-1" />
+            <span className="block w-1 sm:w-1.5 h-1 sm:h-1.5 bg-[#888888] rounded-full mx-0.5 sm:mx-1" />
           </div>
           <div className={`flex flex-row w-full justify-center items-center transition-all duration-500 ${expanded ? 'opacity-100 scale-100 relative' : 'opacity-0 scale-95 pointer-events-none absolute'}`} style={{transitionProperty:'opacity,transform'}}>
             {navItems.map((item) => (
@@ -75,15 +75,12 @@ export default function FloatingNavbar() {
 
 function NavItem({ href, label, icon }: NavItemProps) {
   return (
-    <Link
-      href={href}
+    <Link 
+      href={href} 
       className="flex flex-col items-center justify-center rounded-[21px] transition-colors duration-200 group"
     >
-      <span className="flex flex-col items-center justify-center bg-white rounded-xl px-4 py-3 w-20 h-20 dark:bg-[#262626] hover:bg-[#444444] dark:hover:bg-gray-200 transition-colors duration-200 mx-3">
-        <Image src={icon} alt={label} width={40} height={40}/>
-        {/* <span className={`text-[10px] font-[1000] text-base font-mono tracking-wide text-black dark:text-white opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 ${victorMono.className} group-hover:text-white dark:group-hover:text-black`}>
-          {label}
-        </span> */}
+      <span className="flex flex-col items-center justify-center bg-white rounded-xl px-1.5 sm:px-4 py-1.5 sm:py-3 w-12 h-12 sm:w-20 sm:h-20 dark:bg-[#262626] hover:bg-[#444444] dark:hover:bg-gray-200 transition-colors duration-200 mx-0.5 sm:mx-3">
+        <Image src={icon} alt={label} width={24} height={24} className="sm:w-10 sm:h-10 transition-transform duration-200 group-hover:scale-125"/>
       </span>
     </Link>
   );

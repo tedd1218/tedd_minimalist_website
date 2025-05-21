@@ -30,25 +30,26 @@ export default function About() {
           You'll also find my blog, where I share my thoughts on a variety of topics, including politics, sports, and pop culture.
         </p>
         <p className="mb-4 text-lg">
-          As a fan of minimalist design, I built this website to reflect the idea that less is more. Eye-catching colors and flashy animations aren't always necessary to communicate effectively — in fact, I believe simplicity often conveys ideas more clearly and powerfully.
+          As a fan of minimalist design, I built this website to reflect the idea that less is more. Complicated visuals and flashy animations aren't always necessary to communicate effectively — in fact, I believe simplicity often conveys ideas more clearly and powerfully.
         </p>
         <p className="mb-2 text-lg">Here are some of my past projects:</p>
         <ul className="mb-6 pl-4 list-disc space-y-1 text-lg">
           <li>
-            <span style={{ color: '#E85860' }}>Chip City</span>: 6 seated No Limit Hold'em Poker game connected with websockets with an HTML/CSS/VanillaJS frontend and a Django Framework backend
+            <a style={{ color: '#E85860' }} href="https://github.com/tedd1218/chipcity" className="underline hover:opacity-80">Chip City</a>: 6 seated No Limit Hold'em Poker game connected with websockets with an HTML/CSS/VanillaJS frontend and a Django Framework backend
           </li>
           <li>
-            <span style={{ color: '#E85860' }}>Fantasy Football Bot</span>: Utilized various Python libraries to generate optimized weekly position-based player rankings for Fantasy Football in the NFL
+            <a style={{ color: '#E85860' }} href="https://github.com/tedd1218/FantasyFootballBot" className="underline hover:opacity-80">Fantasy Football Bot</a>: Utilized various Python libraries to generate optimized weekly position-based player rankings for Fantasy Football in the NFL
           </li>
           <li>
-            <span style={{ color: '#E85860' }}>Scotty3D</span>: A functioning computer graphics software package
+            <a style={{ color: '#E85860' }} href="https://cmu-graphics.github.io/Scotty3D-docs/" className="underline hover:opacity-80">Scotty3D</a>: A functioning computer graphics software package
           </li>
         </ul>
         <p className="mb-4 text-lg">If you're just browsing, I hope you enjoy exploring my site.</p>
-        <p className="mb-8 text-lg">
+        <p className="mb-4 text-lg">
           If you're a recruiter, feel free to check out my{' '}
           <Link href="/tedd_resume.pdf" style={{ color: '#E85860' }} target="_blank" className="underline hover:opacity-80">resume</Link>.
         </p>
+        <p className="mb-8 text-lg">And special thanks to <a href="https://angezanetti.com/" className="underline text-[#E85860] hover:opacity-80" target="_blank" rel="noopener noreferrer">Xavier Coiffard</a> and <a href="https://pixelwrld.co//" className="underline text-[#E85860] hover:opacity-80" target="_blank" rel="noopener noreferrer">Roman Tesliuk</a> for the design inspiration.</p>
       </div>
     </main>
   );

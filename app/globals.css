@@ -11,9 +11,20 @@
   font-weight: 700;
   margin-bottom: 0.15rem;
 }
+.prose h2 {
+  font-size: 1.35rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
 .prose p {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 1rem;
+  font-size: 1.125rem;
+}
+
+.prose img {
+  width: 70%;
+  margin: 0 auto;
 }
 
 @theme inline {
