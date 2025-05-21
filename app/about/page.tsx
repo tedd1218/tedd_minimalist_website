@@ -35,13 +35,13 @@ export default function About() {
         <p className="mb-2 text-lg">Here are some of my past projects:</p>
         <ul className="mb-6 pl-4 list-disc space-y-1 text-lg">
           <li>
-            <a style={{ color: '#E85860' }} href="https://github.com/tedd1218/chipcity" className="underline hover:opacity-80">Chip City</a>: 6 seated No Limit Hold'em Poker game connected with websockets with an HTML/CSS/VanillaJS frontend and a Django Framework backend
+            <a style={{ color: '#E85860' }} href="https://github.com/tedd1218/chipcity" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Chip City</a>: 6 seated No Limit Hold'em Poker game connected with websockets with an HTML/CSS/VanillaJS frontend and a Django Framework backend
           </li>
           <li>
-            <a style={{ color: '#E85860' }} href="https://github.com/tedd1218/FantasyFootballBot" className="underline hover:opacity-80">Fantasy Football Bot</a>: Utilized various Python libraries to generate optimized weekly position-based player rankings for Fantasy Football in the NFL
+            <a style={{ color: '#E85860' }} href="https://github.com/tedd1218/FantasyFootballBot" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Fantasy Football Bot</a>: Utilized various Python libraries to generate optimized weekly position-based player rankings for Fantasy Football in the NFL
           </li>
           <li>
-            <a style={{ color: '#E85860' }} href="https://cmu-graphics.github.io/Scotty3D-docs/" className="underline hover:opacity-80">Scotty3D</a>: A functioning computer graphics software package
+            <a style={{ color: '#E85860' }} href="https://cmu-graphics.github.io/Scotty3D-docs/" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-80">Scotty3D</a>: A functioning computer graphics software package
           </li>
         </ul>
         <p className="mb-4 text-lg">If you're just browsing, I hope you enjoy exploring my site.</p>
