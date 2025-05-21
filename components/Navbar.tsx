@@ -54,13 +54,13 @@ export default function FloatingNavbar() {
           className={`flex items-center justify-center transition-all duration-300 bg-gray-200 dark:bg-zinc-700 overflow-hidden ${
             expanded
               ? "w-[90vw] sm:w-[680px] h-[90px] sm:h-[120px] px-1 sm:px-2 py-1 sm:py-2 rounded-full flex-col relative"
-              : "w-[50px] sm:w-[66px] h-[22px] sm:h-[29px] rounded-3xl"
+              : "w-[65px] sm:w-[66px] h-[28px] sm:h-[29px] rounded-3xl"
           }`}
       >
           <div className={`flex items-center justify-center w-full h-full transition-all duration-500 ${expanded ? 'opacity-0 scale-95 pointer-events-none absolute' : 'opacity-100 scale-100 relative'}`} style={{transitionProperty:'opacity,transform'}}>
-            <span className="block w-1 sm:w-1.5 h-1 sm:h-1.5 bg-[#888888] rounded-full mx-0.5 sm:mx-1" />
-            <span className="block w-1 sm:w-1.5 h-1 sm:h-1.5 bg-[#888888] rounded-full mx-0.5 sm:mx-1" />
-            <span className="block w-1 sm:w-1.5 h-1 sm:h-1.5 bg-[#888888] rounded-full mx-0.5 sm:mx-1" />
+            <span className="block w-1.5 sm:w-1.5 h-1.5 sm:h-1.5 bg-[#888888] rounded-full mx-1 sm:mx-1" />
+            <span className="block w-1.5 sm:w-1.5 h-1.5 sm:h-1.5 bg-[#888888] rounded-full mx-1 sm:mx-1" />
+            <span className="block w-1.5 sm:w-1.5 h-1.5 sm:h-1.5 bg-[#888888] rounded-full mx-1 sm:mx-1" />
           </div>
           <div className={`flex flex-row w-full justify-center items-center transition-all duration-500 ${expanded ? 'opacity-100 scale-100 relative' : 'opacity-0 scale-95 pointer-events-none absolute'}`} style={{transitionProperty:'opacity,transform'}}>
             {navItems.map((item) => (
