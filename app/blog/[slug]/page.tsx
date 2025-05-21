@@ -6,6 +6,7 @@ import { Victor_Mono, IBM_Plex_Mono } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import blogPosts from '../../data/blogPosts';
+import { Metadata } from 'next';
 
 const victorMono = Victor_Mono({ subsets: ['latin'] });
 const ibmMono = IBM_Plex_Mono({ weight: ['400'], subsets: ['latin'] });
@@ -188,4 +189,46 @@ function DynamicBlogPost({ slug, postData }: { slug: string, postData: any }) {
       </div>
     </div>
   );
+}
+
+// Generate metadata for the page based on the slug
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  // Find the blog post data based on the slug
+  const post = blogPosts.find(post => post.slug === params.slug);
+  
+  // If the post doesn't exist, return default metadata
+  if (!post) {
+    return {
+      title: 'Blog Post Not Found',
+      description: 'The blog post you are looking for does not exist.',
+    };
+  }
+  
+  // Otherwise, return metadata for the specific blog post
+  return {
+    title: `${post.title} | Tedd Jung`,
+    description: `${post.readtime} - ${post.tags.join(', ')}`,
+    openGraph: {
+      title: post.title,
+      description: `${post.readtime} - ${post.tags.join(', ')}`,
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author],
+      tags: post.tags.map(tag => tag.replace('#', '')),
+      images: [
+        {
+          url: `/blog/${post.slug}.JPG`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: `${post.readtime} - ${post.tags.join(', ')}`,
+      images: [`/blog/${post.slug}.JPG`],
+    },
+  };
 } 

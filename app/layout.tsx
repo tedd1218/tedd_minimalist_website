@@ -19,6 +19,30 @@ const victorMono = Victor_Mono({
 export const metadata: Metadata = {
   title: "Tedd Jung",
   description: "Tedd's Portfolio Website",
+  metadataBase: new URL('https://teddjung.dev'), // Replace with your actual domain
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://teddjung.dev', // Replace with your actual domain
+    title: 'Tedd Jung',
+    description: 'Tedd\'s Portfolio Website',
+    siteName: 'Tedd Jung',
+    images: [
+      {
+        url: '/og-image.jpg', // Will need to create this image
+        width: 1200,
+        height: 630,
+        alt: 'Tedd Jung',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tedd Jung',
+    description: 'Tedd\'s Portfolio Website',
+    images: ['/og-image.jpg'], // Same image as OG
+    creator: '@yourTwitterHandle', // Replace with your Twitter handle if applicable
+  },
 };
 
 export default function RootLayout({
