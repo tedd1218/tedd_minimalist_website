@@ -175,7 +175,7 @@ export default function EatingBlogPost() {
           <Image src="/blog/italy/pompeicast.JPG" alt="Pompeii Cast" width={800} height={800} className="m-auto my-6"/>
           <p>The Amalfi Coast was honestly breathtaking. I've never seen a city so concentrated next to the ocean. The water had a distinct Colbalt and Azure-esque color, creating this shade of blue that was so vibrant and pure. The juxtaposition of the colorful buildings and the crystal clear waters created a striking image — for the first time, it felt like Instagram did not do enough justice for this wonderous place.</p>
           <div className="flex justify-center gap-4 my-6">
-            <Image src="/blog/italy/boats.JPG" alt="Amalfi Boats" width={375} height={375} className="m-auto"/>
+            <Image src="/blog/italy/boats.jpg" alt="Amalfi Boats" width={375} height={375} className="m-auto"/>
             <Image src="/blog/italy/amalficoast.JPG" alt="Amalfi Coast" width={375} height={375} className="m-auto"/>
           </div>
           <p>After the tour, we made our way back to Rome, where we had a quick dinner near the Rome Termini station. I have to wake up early tomorrow because we're seeing the Colosseum, the Roman Forum, and Vatican City.</p>
