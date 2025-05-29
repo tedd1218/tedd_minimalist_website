@@ -23,6 +23,14 @@ const blogPosts: BlogPost[] = [
     author: "Isha Jayadev",
     readtime: "11 Min Read",
     slug: "harmonium"
+  },
+  {
+    title: "Italy Trip",
+    date: "05-25-2025",
+    tags: ["#Travel"],
+    author: "Tedd Jung",
+    readtime: "9 Min Read",
+    slug: "italy"
   }
 ];
 

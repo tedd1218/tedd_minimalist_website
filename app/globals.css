@@ -8,16 +8,21 @@
 .prose h1 {
   font-size: 1.5rem;
   font-family: 'Victor Mono', monospace;
-  font-weight: 700;
+  font-weight: 900;
   margin-bottom: 0.15rem;
 }
 .prose h2 {
-  font-size: 1.35rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.25rem;
+  font-family: 'Victor Mono', monospace;
   font-weight: 700;
   margin-bottom: 0.15rem;
 }
 .prose p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.125rem;
+}
+
+.prose ol {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 1.125rem;
 }
