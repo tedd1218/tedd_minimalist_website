@@ -31,6 +31,14 @@ const blogPosts: BlogPost[] = [
     author: "Tedd Jung",
     readtime: "9 Min Read",
     slug: "italy"
+  },
+  {
+    title: "What Punishments of God Are Not Gifts?",
+    date: "05-31-2025",
+    tags: ["#Journal"],
+    author: "Tedd Jung",
+    readtime: "5 Min Read",
+    slug: "punishments"
   }
 ];
 
