@@ -42,10 +42,10 @@ const blogPosts: BlogPost[] = [
   },
   {
     title: "Why Our Country Is So Divided",
-    date: "06-01-2025",
+    date: "06-17-2025",
     tags: ["#Politics"],
     author: "Tedd Jung",
-    readtime: "10 Min Read",
+    readtime: "5 Min Read",
     slug: "divided"
   }
 ];
