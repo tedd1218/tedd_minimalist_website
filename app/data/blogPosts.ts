@@ -47,6 +47,14 @@ const blogPosts: BlogPost[] = [
     author: "Tedd Jung",
     readtime: "5 Min Read",
     slug: "divided"
+  },
+  {
+    title: "My Favorite Songs of 2025 (So Far)",
+    date: "06-21-2025",
+    tags: ["#Journal"],
+    author: "Tedd Jung",
+    readtime: "2 Min Read",
+    slug: "favsongs2025"
   }
 ];
 
