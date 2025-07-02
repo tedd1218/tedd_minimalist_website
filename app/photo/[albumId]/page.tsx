@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { IBM_Plex_Mono, Victor_Mono } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const victorMono = Victor_Mono({
   subsets: ["latin"]
@@ -147,9 +148,10 @@ const albumData = {
   }
 };
 
-export default function AlbumPage({ params }: { params: { albumId: string } }) {
+export default function AlbumPage() {
+  const { albumId } = useParams<{ albumId: string }>();
   const [selected, setSelected] = useState<null | number>(null);
-  const album = albumData[params.albumId as keyof typeof albumData];
+  const album = albumData[albumId as keyof typeof albumData];
 
   if (!album) {
     return (
@@ -166,10 +168,6 @@ export default function AlbumPage({ params }: { params: { albumId: string } }) {
 
   // Flatten all photos for modal lookup and correct indexing
   const allPhotos = album.photos;
-
-  // Split photos into two columns for display
-  const leftColumn = allPhotos.filter((_, idx) => idx % 2 === 0);
-  const rightColumn = allPhotos.filter((_, idx) => idx % 2 === 1);
 
   // Keyboard navigation for modal
   useEffect(() => {
@@ -195,44 +193,18 @@ export default function AlbumPage({ params }: { params: { albumId: string } }) {
             ← Back to Albums
           </Link>
         </div>
-        
-        <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-10 ${victorMono.className}`}>
-          {album.title}
-        </h1>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl mx-auto">
-          {/* Left column */}
-          <div className="flex flex-col gap-10">
-            {leftColumn.map((photo, idx) => {
-              // Find the flat index in allPhotos
-              const flatIndex = idx * 2;
-              return (
-                <div
-                  key={photo.src}
-                  className="w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105"
-                  onClick={() => setSelected(flatIndex)}
-                >
-                  <Image src={photo.src} alt={photo.alt} fill className="object-contain rounded"/>
-                </div>
-              );
-            })}
-          </div>
-          {/* Right column */}
-          <div className="flex flex-col gap-10">
-            {rightColumn.map((photo, idx) => {
-              // Find the flat index in allPhotos
-              const flatIndex = idx * 2 + 1;
-              return (
-                <div
-                  key={photo.src}
-                  className="w-full aspect-[4/5] relative cursor-pointer transition-transform duration-200 hover:scale-105"
-                  onClick={() => setSelected(flatIndex)}
-                >
-                  <Image src={photo.src} alt={photo.alt} fill className="object-contain rounded" />
-                </div>
-              );
-            })}
-          </div>
+        <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-2 ${victorMono.className}`}>{album.title}</h1>
+        <div className="mb-8 text-gray-500 text-md">{album.photos.length} Photo{album.photos.length !== 1 ? 's' : ''}</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+          {allPhotos.map((photo, idx) => (
+            <div
+              key={photo.src}
+              className={`w-full aspect-[${photo.aspectRatio || "4/5"}] relative cursor-pointer transition-transform duration-200 hover:scale-105`}
+              onClick={() => setSelected(idx)}
+            >
+              <Image src={photo.src} alt={photo.alt} fill className="object-cover"/>
+            </div>
+          ))}
         </div>
       </div>
       
