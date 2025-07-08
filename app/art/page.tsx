@@ -2,7 +2,6 @@
 import supabase from '@/lib/supabase';
 import { IBM_Plex_Mono, Victor_Mono } from "next/font/google";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const victorMono = Victor_Mono({
@@ -148,30 +147,62 @@ export default function ArtGallery() {
             aria-modal="true"
             role="dialog"
           >
-            <motion.div
-              key="modal"
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              variants={modalVariants}
-              className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 max-w-lg w-full relative"
-              onClick={e => e.stopPropagation()}
-            >
+            <div className="flex items-center justify-center w-full h-full">
+              {/* Left Arrow (next to modal, fixed width) */}
+              <div className="mr-2 w-12 flex items-center justify-center">
+                {selected > 0 && (
+                  <button
+                    className="bg-white/80 dark:bg-zinc-800/80 rounded-full p-2 shadow hover:bg-gray-200 dark:hover:bg-zinc-700 transition z-50 cursor-pointer flex items-center justify-center"
+                    onClick={e => { e.stopPropagation(); setSelected(selected - 1); }}
+                    aria-label="Previous art"
+                    tabIndex={0}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                  </button>
+                )}
+              </div>
               <motion.div
+                key="modal"
                 initial="hidden"
                 animate="visible"
-                exit="hidden"
-                variants={modalImageVariants}
-                className={`w-full aspect-[${images[selected].aspect_ratio || "4/5.33"}] relative mb-4`}
+                exit="exit"
+                variants={modalVariants}
+                className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 max-w-lg w-full relative flex-shrink-0"
+                onClick={e => e.stopPropagation()}
               >
-                <img src={images[selected].image_url} alt={images[selected].alt} className="object-cover rounded-md" />
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  variants={modalImageVariants}
+                  className={`w-full aspect-[${images[selected].aspect_ratio || "4/5.33"}] relative mb-4`}
+                >
+                  <img src={images[selected].image_url} alt={images[selected].alt} className="object-cover rounded-md" />
+                </motion.div>
+                <div className="-mt-2 flex justify-between items-baseline">
+                  <div className="text-lg font-semibold">{images[selected].alt}</div>
+                  <div className="text-gray-500 text-md">{images[selected].date}</div>
+                </div>
+                <div className={`mt-1 text-base leading-none ${ibmMono.className}`}>{images[selected].description}</div>
               </motion.div>
-              <div className="-mt-2 flex justify-between items-baseline">
-                <div className="text-lg font-semibold">{images[selected].alt}</div>
-                <div className="text-gray-500 text-md">{images[selected].date}</div>
+              {/* Right Arrow (next to modal, fixed width) */}
+              <div className="ml-2 w-12 flex items-center justify-center">
+                {selected < images.length - 1 && (
+                  <button
+                    className="bg-white/80 dark:bg-zinc-800/80 rounded-full p-2 shadow hover:bg-gray-200 dark:hover:bg-zinc-700 transition z-50 cursor-pointer flex items-center justify-center"
+                    onClick={e => { e.stopPropagation(); setSelected(selected + 1); }}
+                    aria-label="Next art"
+                    tabIndex={0}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </button>
+                )}
               </div>
-              <div className={`mt-1 text-base leading-none ${ibmMono.className}`}>{images[selected].description}</div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
