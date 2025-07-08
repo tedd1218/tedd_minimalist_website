@@ -88,14 +88,9 @@ export default function AlbumPage() {
     return (
       <main className="flex flex-col min-h-screen px-4 py-8">
         <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
-          <div className="flex items-center gap-4 mb-5 mt-20">
-            <Link href="/photo" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
-              ← Back to Albums
-            </Link>
-          </div>
-          <div>
-            <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded w-20 mb-2 animate-pulse"></div>
-            <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-20 mb-8 animate-pulse"></div>
+          <div className="mt-20">
+            <div className="h-12 bg-gray-200 dark:bg-gray-700 w-20 mb-2 animate-pulse"></div>
+            <div className="h-6 bg-gray-200 dark:bg-gray-700 w-20 mb-8 animate-pulse"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="w-full aspect-[4/5] relative cursor-pointer">
@@ -127,13 +122,32 @@ export default function AlbumPage() {
 
   return (
     <main className="flex flex-col min-h-screen px-4 py-8">
+      {/* Back to Albums Arrow Button (matches blog style) */}
+      <Link
+        href="/photo"
+        className="fixed left-4 top-9 -translate-y-1/2 z-40 flex items-center group"
+        aria-label="Back to Photography Albums"
+      >
+        {/* Light mode icon */}
+        <Image
+          src="/icons/leftarrowlighttwotone.svg"
+          alt="Back"
+          width={48}
+          height={48}
+          className="block dark:hidden"
+        />
+        {/* Dark mode icon */}
+        <Image
+          src="/icons/leftarrowdarktwotone.svg"
+          alt="Back"
+          width={48}
+          height={48}
+          className="hidden dark:block"
+        />
+        <span className={`ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-base font-bold text-[#667085] dark:text-gray-200 ${victorMono.className}`}>BACK TO PHOTOGRAPHY</span>
+      </Link>
       <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
-        <div className="flex items-center gap-4 mb-5 mt-20">
-          <Link href="/photo" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
-            ← Back to Albums
-          </Link>
-        </div>
-        <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-2 ${victorMono.className}`}>{album.title}</h1>
+        <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mt-20 mb-2 ${victorMono.className}`}>{album.title}</h1>
         <div className="mb-8 text-gray-500 text-md">{photos.length} Photo{photos.length !== 1 ? 's' : ''}</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {photos.map((photo, idx) => (
