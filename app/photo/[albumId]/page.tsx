@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { IBM_Plex_Mono, Victor_Mono } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import supabase from '@/lib/supabase';
 
 const victorMono = Victor_Mono({
   subsets: ["latin"]
@@ -16,148 +17,106 @@ const ibmMono = IBM_Plex_Mono({
   subsets: ["latin"]
 });
 
-// Album data with photos
-const albumData = {
-  "2025": {
-    title: "2025",
-    photos: [
-      {
-        src: "/photo/beerwall.JPG",
-        alt: "NEELAY'S BEER WALL",
-        description: "Neelay's beer wall in his apartment at State College, PA.",
-        date: "04.29.2025",
-        aspectRatio: "4/5"
-      },
-      {
-        src: "/photo/bellmtn.JPG",
-        alt: "BELL MOUNTAIN",
-        description: "Sunset at Bell Mountain in Hiawasse, GA.",
-        date: "01.03.2025",
-        aspectRatio: "4/5"
-      }
-    ]
-  },
-  "banff-2024": {
-    title: "BANFF NATIONAL PARK",
-    photos: [
-      {
-        src: "/photo/banff.JPG",
-        alt: "LAKE LOUISE",
-        description: "Mountains in Lake Louise in Banff National Park, Alberta, Canada.",
-        date: "05.24.2024",
-        aspectRatio: "4/5"
-      },
-      {
-        src: "/photo/morantcurve.JPG",
-        alt: "MORANT'S CURVE",
-        description: "Famous train curve on Bow Valley Parkway in Banff National Park, Alberta, Canada.",
-        date: "05.24.2024",
-        aspectRatio: "4/5"
-      }
-    ]
-  },
-  "pittsburgh-2023-2024": {
-    title: "PITTSBURGH",
-    photos: [
-      {
-        src: "/photo/pointstate.JPG",
-        alt: "POINT STATE PARK",
-        description: "July 4th at Point State Park in Pittsburgh, PA.",
-        date: "07.04.2023",
-        aspectRatio: "4/5"
-      },
-      {
-        src: "/photo/schenley.JPG",
-        alt: "SCHENLEY PARK",
-        description: "Blinking headlights at Schenley Park in Pittsburgh, PA.",
-        date: "04.15.2023",
-        aspectRatio: "4/5"
-      },
-      {
-        src: "/photo/carnegie.JPG",
-        alt: "SNOWFALL",
-        description: "Snowfall at the intersection of Morewood Avenue and Forbes Avenue in Pittsburgh, PA.",
-        date: "01.31.2023",
-        aspectRatio: "4/5"
-      },
-      {
-        src: "/photo/forest.JPG",
-        alt: "FOREST",
-        description: "The Forests of Schenley Park in Pittsburgh, PA.",
-        date: "07.10.2024",
-        aspectRatio: "4/5"
-      }
-    ]
-  },
-  "international-2023": {
-    title: "INTERNATIONAL",
-    photos: [
-      {
-        src: "/photo/amsterdam.JPG",
-        alt: "AMSTERDAM",
-        description: "Victoria Hotel near Amsterdam Central Station in Amsterdam, Netherlands.",
-        date: "03.05.2023",
-        aspectRatio: "4/5"
-      },
-      {
-        src: "/photo/montserrat.JPG",
-        alt: "MONTSERRAT",
-        description: "Santa Maria de Montserrat Abbey in Catalonia, Spain.",
-        date: "03.04.2025",
-        aspectRatio: "4/5"
-      }
-    ]
-  },
-  "georgia-2022": {
-    title: "GEORGIA",
-    photos: [
-      {
-        src: "/photo/sunset.JPG",
-        alt: "SUNSET",
-        description: "A beautiful sunset at the intersection of Bell Road and McGinnis Ferry Road.",
-        date: "08.18.2022",
-        aspectRatio: "4/5"
-      },
-      {
-        src: "/photo/riverwalk.JPG",
-        alt: "RIVERWALK",
-        description: "Sunset outside Riverwalk in Johns Creek, GA.",
-        date: "08.05.2022",
-        aspectRatio: "4/5"
-      }
-    ]
-  },
-  "asia-2018": {
-    title: "ASIA",
-    photos: [
-      {
-        src: "/photo/hands.jpg",
-        alt: "HANDS",
-        description: "Sculpture of hands in the Eden Paradise Hotel in Gyeonggi-do, South Korea.",
-        date: "07.23.2018",
-        aspectRatio: "4/3"
-      },
-      {
-        src: "/photo/waterfall.jpg",
-        alt: "JIONNOTAKI",
-        description: "Waterfall in Kusu, Japan.",
-        date: "07.18.2018",
-        aspectRatio: "4/3"
-      }
-    ]
-  }
-};
-
 export default function AlbumPage() {
   const { albumId } = useParams<{ albumId: string }>();
   const [selected, setSelected] = useState<null | number>(null);
-  const album = albumData[albumId as keyof typeof albumData];
+  const [album, setAlbum] = useState<any>(null);
+  const [photos, setPhotos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (!album) {
+  useEffect(() => {
+    if (!albumId) return;
+
+    const fetchAlbumData = async () => {
+      try {
+        // Fetch album info
+        const { data: albumData, error: albumError } = await supabase
+          .from("photo-albums")
+          .select("*")
+          .eq("album_id", albumId)
+          .single();
+
+        if (albumError) {
+          setError(albumError.message);
+          setLoading(false);
+          return;
+        }
+
+        // Fetch photos for this album
+        const { data: photosData, error: photosError } = await supabase
+          .from("photo-images")
+          .select("*")
+          .eq("album_id", albumId)
+          .order("id", { ascending: true });
+
+        if (photosError) {
+          setError(photosError.message);
+          setLoading(false);
+          return;
+        }
+
+        setAlbum(albumData);
+        setPhotos(photosData || []);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to load album data");
+        setLoading(false);
+      }
+    };
+
+    fetchAlbumData();
+  }, [albumId]);
+
+  // Keyboard navigation for modal
+  useEffect(() => {
+    if (selected === null) return;
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'ArrowLeft') {
+        setSelected((prev) => prev === null ? null : (prev - 1 + photos.length) % photos.length);
+      } else if (e.key === 'ArrowRight') {
+        setSelected((prev) => prev === null ? null : (prev + 1) % photos.length);
+      } else if (e.key === 'Escape') {
+        setSelected(null);
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selected, photos.length]);
+
+  if (loading) {
+    return (
+      <main className="flex flex-col min-h-screen px-4 py-8">
+        <div className="flex flex-col items-start justify-start flex-grow max-w-3xl mx-auto w-full">
+          <div className="flex items-center gap-4 mb-5 mt-20">
+            <Link href="/photo" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+              ← Back to Albums
+            </Link>
+          </div>
+          <div>
+            <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded w-20 mb-2 animate-pulse"></div>
+            <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-20 mb-8 animate-pulse"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="w-full aspect-[4/5] relative cursor-pointer">
+                  <div className="w-90 h-full bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (error || !album) {
     return (
       <main className="flex flex-col min-h-screen px-4 py-8">
         <div className="flex flex-col items-center justify-center flex-grow">
-          <h1 className={`text-2xl font-bold mb-4 ${victorMono.className}`}>Album not found</h1>
+          <h1 className={`text-2xl font-bold mb-4 ${victorMono.className}`}>
+            {error ? "Error loading album" : "Album not found"}
+          </h1>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
           <Link href="/photo" className="text-blue-500 hover:underline">
             Back to Photography
           </Link>
@@ -165,25 +124,6 @@ export default function AlbumPage() {
       </main>
     );
   }
-
-  // Flatten all photos for modal lookup and correct indexing
-  const allPhotos = album.photos;
-
-  // Keyboard navigation for modal
-  useEffect(() => {
-    if (selected === null) return;
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'ArrowLeft') {
-        setSelected((prev) => prev === null ? null : (prev - 1 + allPhotos.length) % allPhotos.length);
-      } else if (e.key === 'ArrowRight') {
-        setSelected((prev) => prev === null ? null : (prev + 1) % allPhotos.length);
-      } else if (e.key === 'Escape') {
-        setSelected(null);
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selected, allPhotos.length]);
 
   return (
     <main className="flex flex-col min-h-screen px-4 py-8">
@@ -194,15 +134,15 @@ export default function AlbumPage() {
           </Link>
         </div>
         <h1 className={`text-4xl sm:text-4xl md:text-4xl font-bold tracking-wider mb-2 ${victorMono.className}`}>{album.title}</h1>
-        <div className="mb-8 text-gray-500 text-md">{album.photos.length} Photo{album.photos.length !== 1 ? 's' : ''}</div>
+        <div className="mb-8 text-gray-500 text-md">{photos.length} Photo{photos.length !== 1 ? 's' : ''}</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-          {allPhotos.map((photo, idx) => (
+          {photos.map((photo, idx) => (
             <div
-              key={photo.src}
-              className={`w-full aspect-[${photo.aspectRatio || "4/5"}] relative cursor-pointer transition-transform duration-200 hover:scale-105`}
+              key={photo.id}
+              className={`w-full aspect-[${photo.aspect_ratio || "4/5"}] relative cursor-pointer transition-transform duration-200 hover:scale-105`}
               onClick={() => setSelected(idx)}
             >
-              <Image src={photo.src} alt={photo.alt} fill className="object-cover"/>
+              <img src={photo.image_url} alt={photo.alt_text} className="object-cover"/>
             </div>
           ))}
         </div>
@@ -244,18 +184,18 @@ export default function AlbumPage() {
                 onClick={e => e.stopPropagation()}
                 tabIndex={-1}
               >
-                <div className={`w-full aspect-[${allPhotos[selected].aspectRatio || "4/5.33"}] relative mb-4`}>
-                  <Image src={allPhotos[selected].src} alt={allPhotos[selected].alt} fill className="object-cover rounded-md" />
+                <div className={`w-full aspect-[${photos[selected].aspect_ratio || "4/5"}] relative mb-4`}>
+                  <img src={photos[selected].image_url} alt={photos[selected].alt} className="object-cover rounded-md" />
                 </div>
                 <div className="-mt-2 flex justify-between items-baseline">
-                  <div className="text-lg font-semibold">{allPhotos[selected].alt}</div>
-                  <div className="text-gray-500 text-md">{allPhotos[selected].date}</div>
+                  <div className="text-lg font-semibold">{photos[selected].alt}</div>
+                  <div className="text-gray-500 text-md">{photos[selected].date}</div>
                 </div>
-                <div className={`mt-1 text-base leading-none ${ibmMono.className}`}>{allPhotos[selected].description}</div>
+                <div className={`mt-1 text-base leading-none ${ibmMono.className}`}>{photos[selected].description}</div>
               </motion.div>
               {/* Right Arrow (next to modal, fixed width) */}
               <div className="ml-2 w-12 flex items-center justify-center">
-                {selected < allPhotos.length - 1 && (
+                {selected < photos.length - 1 && (
                   <button
                     className="bg-white/80 dark:bg-zinc-800/80 rounded-full p-2 shadow hover:bg-gray-200 dark:hover:bg-zinc-700 transition z-50 cursor-pointer"
                     onClick={e => { e.stopPropagation(); setSelected(selected + 1); }}
