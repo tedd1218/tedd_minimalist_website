@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import supabase from '@/lib/supabase';
+import { optimizeImage, formatFileSize, calculateSizeReduction } from '@/lib/utils';
 
 export default function ArtUploadForm() {
   const [title, setTitle] = useState('');
@@ -8,6 +9,35 @@ export default function ArtUploadForm() {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [optimizing, setOptimizing] = useState(false);
+  const [originalSize, setOriginalSize] = useState<number | null>(null);
+  const [optimizedSize, setOptimizedSize] = useState<number | null>(null);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (!selectedFile) return;
+
+    setFile(selectedFile);
+    setOriginalSize(selectedFile.size);
+    setOptimizedSize(null);
+    setMessage(null);
+
+    // Show optimization in progress
+    setOptimizing(true);
+    
+    try {
+      const optimizedFile = await optimizeImage(selectedFile);
+      setFile(optimizedFile);
+      setOptimizedSize(optimizedFile.size);
+      
+      const reduction = calculateSizeReduction(originalSize!, optimizedFile.size);
+      setMessage(`Image optimized! Size reduced by ${reduction} (${formatFileSize(originalSize!)} → ${formatFileSize(optimizedFile.size)})`);
+    } catch (error) {
+      setMessage('Failed to optimize image. Using original file.');
+    } finally {
+      setOptimizing(false);
+    }
+  };
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -51,41 +81,64 @@ export default function ArtUploadForm() {
       setTitle('');
       setDescription('');
       setFile(null);
+      setOriginalSize(null);
+      setOptimizedSize(null);
     }
     setUploading(false);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md">
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        required
-        className="border p-2 rounded"
-      />
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={e => setDescription(e.target.value)}
-        className="border p-2 rounded"
-      />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={e => setFile(e.target.files?.[0] || null)}
-        required
-        className="border p-2 rounded"
-      />
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-md">
+      <div>
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          required
+          className="w-full border p-2 rounded"
+        />
+      </div>
+      
+      <div>
+        <textarea
+          placeholder="Description"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          className="w-full border p-2 rounded"
+          rows={3}
+        />
+      </div>
+      
+      <div>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          required
+          className="w-full border p-2 rounded"
+        />
+        {optimizing && (
+          <div className="text-sm text-blue-600 mt-1">Optimizing image...</div>
+        )}
+        {originalSize && optimizedSize && (
+          <div className="text-sm text-green-600 mt-1">
+            {message}
+          </div>
+        )}
+      </div>
+      
       <button
         type="submit"
-        disabled={uploading}
-        className="bg-blue-600 text-white rounded p-2"
+        disabled={uploading || optimizing}
+        className="w-full bg-blue-600 text-white rounded p-2 disabled:opacity-50"
       >
         {uploading ? 'Uploading...' : 'Upload'}
       </button>
-      {message && <div className="text-sm mt-2">{message}</div>}
+      
+      {message && !originalSize && (
+        <div className="text-sm mt-2 p-2 rounded bg-gray-100">{message}</div>
+      )}
     </form>
   );
 }
